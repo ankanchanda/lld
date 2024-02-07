@@ -3,7 +3,7 @@ package lld.oop.abstraction;
 class Emu extends Bird {
 
     Emu(){
-        name = "emu";
+        super("emu");
     }
 
     @Override

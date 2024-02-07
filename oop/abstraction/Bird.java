@@ -3,6 +3,10 @@ package lld.oop.abstraction;
 public abstract class Bird {
   
     String name;
+
+    Bird(String name){
+        this.name = name;
+    }
     
     protected abstract void attack(); 
  
