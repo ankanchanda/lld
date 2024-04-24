@@ -47,3 +47,42 @@ Now, InvoiceDao class which has the saveToDB method is live and tested. Now we c
 So we create an interface which is extended by the classes DatabaseInvoiceDao and FileInvoiceDao and add their implementation on it. This way, the existing code won't be harmed.
 
 <a href="OpenCloseCorrection.java">OpenCloseCorrection.java</a>
+
+## Liskov Substitution Principle
+If class B is a subtype of class A then we should be able to replace the object of A with B without breaking the behavior of the program
+
+Subclass should extend the capability of parent class not narrow it down
+
+Refer to <a href="LiskovSubstitutionPrinciple.java">LiskovSubstitutionPrinciple.java</a>
+
+Here Motorcycle class implements Bike and extends its capability so it follows Liskov Substitution Principle where as Cycle implements Bike but limits its capability for turnOnEngine and hence it doesn't follow the liskov solid principle
+
+## Interface Segmented Principle
+Interfaces should such that client shouldn't implement unnecessary functions that they do not need.
+
+Refer to <a href="InterfaceSegmentedPrinciple.java">InterfaceSegmentedPrinciple.java</a>
+
+Here, since Waiter class is implementing RestaurantEmployee interface so it has to override methods that are of no use so it is not following Interface Segmented Principle
+
+
+<a href="InterfaceSegmentedPrincipleCorrection.java">InterfaceSegmentedPrincipleCorrection.java</a>
+
+here we define each interface such that all the implements should be of use whoever implements it.
+
+## Dependency Inversion Principle
+class should depend on interfaces rather than concrete classes
+
+
+Refer to <a href="DependencyInversionPrinciple.java">DependencyInversionPrinciple.java</a>
+- <<keyboard>>
+    - WiredKeyboard
+    - BluetoothKeyboard
+- <<Mouse>>
+    - WiredMouse
+    - BluetoothMouse
+
+Now we have a class Mac which extends the concrete class WiredKeyboard and WiredMouse, the problem is that if you want to enhance this in the future then you wouldn't be able to. So it is not following the Dependency Inversion Principle.
+
+Correct it using the type as of interface and assign using constructor injection.
+
+Refer to: <a href="DependencyInversionPrincipleCorrection.java">DependencyInversionPrincipleCorrection.java</a>
