@@ -14,5 +14,14 @@ public class Main {
         for(Vehicle vehicle: vehicleList){
             System.out.println(vehicle.getNumberOfWheels().toString());
         }
+
+        List<EngineVehicle> engineVehicleList = new ArrayList<>();
+        engineVehicleList.add(new MotorCycle());
+        engineVehicleList.add(new Car());
+        // engineVehicleList.add(new Bicycle()); // gives compile time error
+
+        for(EngineVehicle vehicle: engineVehicleList){
+            System.out.println(vehicle.hasEngine().toString());
+        }
     }
 }
