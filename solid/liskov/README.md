@@ -26,7 +26,7 @@ How to solve?
 
 Refer to Solution:
 
-- <a href="solution/Vechicle.java">Vehicle.java</a>
+- <a href="solution/Vehicle.java">Vehicle.java</a>
     - <a href="solution/EngineVehicle.java">EngineVehicle.java</a>
         - <a href="solution/MotorCycle.java">MotorCycle.java</a>
         - <a href="solution/Car.java">Car.java</a>

@@ -1,6 +1,6 @@
 package lld.solid.liskov.solution;
 
-public class Vechicle {
+public class Vehicle {
 
     public Integer getNumberOfWheels(){
         return 2;
