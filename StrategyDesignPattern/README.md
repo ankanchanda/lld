@@ -1,7 +1,7 @@
 # Strategy Design pattern
 
 ## Problem
-![alt text](../assets/strategy-pattern-normal.png)
+![alt text](../assets/strategy-pattern-problem.png)
 
 Here is a diagram
 - Base Class Vehicle is inherrited by Sporty vehicle, Passenger Vehicle, Off-Road Vehicle
