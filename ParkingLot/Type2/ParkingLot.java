@@ -10,18 +10,24 @@ public class ParkingLot {
         this.parkingLotId = parkingLotId;
         floors = new ArrayList<>();
         for(int i=0; i<floorsCount; i++){
-            floors.add(new Floor(i, slotsPerFloor));
+            floors.add(new Floor(parkingLotId, i, slotsPerFloor));
         }
     }
 
-    void addFloor(Integer slotsAllocatedToFloor){
-        int floorNumber = floors.size();
-        floors.add(new Floor(floorNumber, slotsAllocatedToFloor));
+    void addFloors(Integer additionalFloors, Integer slotsPerFloor){
+        for(int i=0; i<additionalFloors; i++){
+            addFloor(slotsPerFloor);
+        }
     }
 
-    void addSlotsToFloor(Integer floorNumber, Integer additionalSlots){
+    void addFloor(Integer slotsPerFloor){
+        int floorNumber = floors.size();
+        floors.add(new Floor(parkingLotId, floorNumber, slotsPerFloor));
+    }
+
+    public void addSlotsToFloor(Integer floorNumber, Integer additionalSlots, VehicleType vehicleType){
         Floor floor = floors.get(floorNumber);
-        floor.addSlots(additionalSlots);
+        floor.addSlots(additionalSlots, vehicleType);
     }
 
     public String getParkingLotId() {
@@ -36,9 +42,31 @@ public class ParkingLot {
         return floors.size();
     }
 
-    public Integer getSlotsForFloor(Integer floorNumber){
+    public Integer getSlotsCountByFloorNumber(Integer floorNumber){
         Floor floor = floors.get(floorNumber);
-        return floor.getSlots();
+        return floor.getTotalSlots();
+    }
+
+    public Integer getNumberOfFreeSlotsByVehicleType(VehicleType vehicleType){
+        Integer freeSlotsCount = 0;
+        for(Floor floor: floors){
+            freeSlotsCount += floor.getAvailableSlotsCountByVehicleType(vehicleType);
+        }
+
+        return freeSlotsCount;
+    }
+
+    public List<Slot> getFreeSlotsByVehicleType(VehicleType vehicleType){
+        List<Slot> availableSlots = new ArrayList<>();
+
+        for(Floor floor: floors){
+            if(floor.isSlotsAvailableForVehcicleType(vehicleType)){
+                List<Slot> slots = floor.getSlotsAvailableByVehcicleType(vehicleType);
+                slots.addAll(slots);
+            }
+        }
+
+        return availableSlots;
     }
 
 }
