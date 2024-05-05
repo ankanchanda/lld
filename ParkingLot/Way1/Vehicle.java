@@ -9,4 +9,12 @@ public class Vehicle {
         this.vehicleNumber = vehicleNumber;
         this.vehicleType = vehicleType;
     }
+
+	public int getVehicleNumber() {
+		return vehicleNumber;
+	}
+
+	public VehicleType getVehicleType() {
+		return vehicleType;
+	}
 }
