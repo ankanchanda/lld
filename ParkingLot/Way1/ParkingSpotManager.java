@@ -9,10 +9,13 @@ public abstract class ParkingSpotManager {
         this.parkingSpots = parkingSpots;
     }
 
-    abstract ParkingSpot findParkingSpot();
+    ParkingSpot findParkingSpot(ParkingStrategyType parkingStrategyType){
+        ParkingStrategy parkingStrategy = ParkingStrategyFactory.getParkingStrategy(parkingStrategyType);
+        return parkingStrategy.findParkingSpot();
+    }
 
-    void parkVehicle(Vehicle v){
-        ParkingSpot spot = findParkingSpot();
+    void parkVehicle(Vehicle v, ParkingStrategyType parkingStrategyType){
+        ParkingSpot spot = findParkingSpot(parkingStrategyType);
         spot.parkVehicle(v);
     }
 
