@@ -66,7 +66,7 @@ public class Floor {
     }
 
     public void addASlot(VehicleType vehicleType){
-        Integer slotId = slots.size();
+        Integer slotId = getTotalSlots() + 1;
         slots.add(new Slot(floorNumber, slotId, vehicleType));
     }
     
