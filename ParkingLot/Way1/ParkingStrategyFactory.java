@@ -10,6 +10,6 @@ public class ParkingStrategyFactory {
             return new ParkingStrategyNearToElevator();
         }
 
-        throw new TypeNotPresentException("Parking Strategy " + parkingStrategyType.toString() + " is not supported yet", null);
+        return new ParkingStrategyDefault();
     }
 }
