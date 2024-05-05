@@ -10,8 +10,7 @@ public class ParkingSpotManagerFactory{
         this.parkingSpots = parkingSpots;
     }
     
-    ParkingSpotManager getParkingSpotManager(Vehicle vehicle){
-        VehicleType type = vehicle.getVehicleType();
+    ParkingSpotManager getParkingSpotManager(VehicleType type){
         if(type == VehicleType.TwoWheeler){
             return new TwoWheelerParkingSpotManager(this.parkingSpots);
         }

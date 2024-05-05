@@ -4,7 +4,7 @@ public class ParkingStrategyDefault implements ParkingStrategy{
 
 	@Override
 	public ParkingSpot findParkingSpot() {
-        // TODO
+        System.out.println("Default parking spot found");
 		return null;
 	}
     

@@ -4,7 +4,7 @@ public class ParkingStrategyNearToEntrance implements ParkingStrategy {
 
 	@Override
 	public ParkingSpot findParkingSpot() {
-        // TODO
+        System.out.println("Near to entrance parking spot found");
 		return null;
 	}
     
