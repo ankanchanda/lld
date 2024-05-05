@@ -1,4 +1,4 @@
-package lld.ParkingLot.Way1;
+package lld.ParkingLot.Type1;
 
 import java.util.ArrayList;
 import java.util.List;

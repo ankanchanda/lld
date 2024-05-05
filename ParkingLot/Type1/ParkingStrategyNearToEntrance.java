@@ -1,4 +1,4 @@
-package lld.ParkingLot.Way1;
+package lld.ParkingLot.Type1;
 
 public class ParkingStrategyNearToEntrance implements ParkingStrategy {
 
