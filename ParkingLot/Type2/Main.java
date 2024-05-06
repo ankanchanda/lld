@@ -2,14 +2,13 @@ import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) {
-        final String EXIT = "exit";
         Scanner scanner = new Scanner(System.in);
         ParkingLot parkingLot;
         Display display = null;
 
         while(true){
             String input = scanner.nextLine();
-            if(input.equals(EXIT)){
+            if(input.equals(Constants.EXIT)){
                 break;
             }
 
@@ -29,5 +28,7 @@ public class Main {
                 display.display(inputSplit[1], VehicleTypeManager.getVehicleType(inputSplit[2]));
             }
         }
+
+        scanner.close();
     }   
 }

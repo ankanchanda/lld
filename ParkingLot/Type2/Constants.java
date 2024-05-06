@@ -5,4 +5,5 @@ public class Constants {
 
     public static final String DISPLAY_FREE_COUNT = "free_count";
     public static final String DISPLAY_FREE_SLOTS = "free_slots";
+    public static final String DISPLAY_OCCUPIED_SLOTS = "occupied_slots";
 }
