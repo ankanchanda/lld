@@ -1,3 +1,4 @@
+package Constants;
 public class Constants {
     public static final String EXIT = "exit";
     public static final String DISPLAY = "display";

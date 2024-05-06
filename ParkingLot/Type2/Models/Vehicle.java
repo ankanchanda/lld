@@ -1,3 +1,7 @@
+package Models;
+
+import Enums.VehicleType;
+
 public class Vehicle {
 
     private String registrationNumber;
@@ -21,5 +25,4 @@ public class Vehicle {
     public VehicleType getVehicleType() {
         return vehicleType;
     }
-
 }
