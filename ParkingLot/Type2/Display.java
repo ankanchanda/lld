@@ -28,13 +28,36 @@ public class Display {
             for(int i=0; i<slots.size(); i++){
                 Integer slotId = slots.get(i).getSlotId();
                 if( i == slots.size() - 1){
-                    System.out.println(slotId.toString());
+                    System.out.print(slotId.toString());
                 }
                 else{
                     System.out.print(slotId.toString() + ", ");
                 }
             }
+            System.out.println();
         }
+    }
+
+    void displayOccupiedSlots(VehicleType vehicleType){
+
+        Map<Integer, List<Slot>> occupiedSlots = parkingLot.getOccupiedSlots(vehicleType);
+        for(Map.Entry<Integer, List<Slot>> occupiedSlotsElement: occupiedSlots.entrySet()){
+            Integer floorNumber = occupiedSlotsElement.getKey();
+            List<Slot> slots = occupiedSlotsElement.getValue();
+
+            System.out.print("Occupied slots for " + vehicleType.toString() + " on Floor " + floorNumber.toString() + " : ");
+            for(int i=0; i<slots.size(); i++){
+                Integer slotId = slots.get(i).getSlotId();
+                if( i == slots.size() - 1){
+                    System.out.print(slotId.toString());
+                }
+                else{
+                    System.out.print(slotId.toString() + ", ");
+                }
+            }
+            System.out.println();
+        }
+
     }
 
     public void display(String displayType, VehicleType vehicleType){
@@ -44,6 +67,9 @@ public class Display {
                 break;
             case Constants.DISPLAY_FREE_SLOTS:
                 displayFreeSlots(vehicleType);
+                break;
+            case Constants.DISPLAY_OCCUPIED_SLOTS:
+                displayOccupiedSlots(vehicleType);
                 break;
             default:
                 System.out.println("Invalid Display Type");

@@ -54,9 +54,25 @@ public class Floor {
         return availableSlots;
     }
 
-    public boolean isSlotsAvailableForVehcicleType(VehicleType vehicleType){
+    public boolean isSlotAvailableForVehcicleType(VehicleType vehicleType){
         Integer availableSlotsCount =  getAvailableSlotsCountByVehicleType(vehicleType);
         return availableSlotsCount > 0;
+    }
+
+    public List<Slot> getOccupiedSlotsByVehicleType(VehicleType vehicleType){
+
+        List<Slot> occupiedSlots = new ArrayList<>();
+
+        for(Slot slot: slots){
+            VehicleType slotVehicleType = slot.getAsscociatedVehicleType();
+            Boolean isSlotAvailable = slot.isAvailable();
+
+            if(isSlotAvailable == false && slotVehicleType.equals(vehicleType)){
+                occupiedSlots.add(slot);
+            }
+        }
+
+        return occupiedSlots;
     }
 
     public void addSlots(Integer additionalSlots, VehicleType vehicleType){
@@ -67,7 +83,7 @@ public class Floor {
 
     public void addASlot(VehicleType vehicleType){
         Integer slotId = getTotalSlots() + 1;
-        slots.add(new Slot(floorNumber, slotId, vehicleType));
+        slots.add(new Slot(parkingLotId, floorNumber, slotId, vehicleType));
     }
     
 }

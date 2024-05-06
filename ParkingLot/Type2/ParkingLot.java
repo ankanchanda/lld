@@ -55,13 +55,21 @@ public class ParkingLot {
         Map<Integer, List<Slot>> availableSlots = new TreeMap<>();
 
         for(Floor floor: floors){
-            if(floor.isSlotsAvailableForVehcicleType(vehicleType)){
-                List<Slot> slots = floor.getSlotsAvailableByVehcicleType(vehicleType);
-                availableSlots.put(floor.getFloorNumber(), slots);
-            }
+            List<Slot> slots = floor.getSlotsAvailableByVehcicleType(vehicleType);
+            availableSlots.put(floor.getFloorNumber(), slots);
         }
 
         return availableSlots;
+    }
+
+    public Map<Integer, List<Slot>> getOccupiedSlots(VehicleType vehicleType){
+
+        Map<Integer, List<Slot>> occupiedSlots = new TreeMap<>();
+        for(Floor floor: floors){
+            List<Slot> slots = floor.getOccupiedSlotsByVehicleType(vehicleType);
+            occupiedSlots.put(floor.getFloorNumber(), slots);
+        }
+        return occupiedSlots;
     }
 
     void addFloors(Integer additionalFloors, Integer slotsPerFloor){
