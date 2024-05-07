@@ -7,12 +7,14 @@ import Enums.VehicleType;
 import Interfaces.FloorSetting;
 import Models.Floor;
 import Models.Slot;
+import Models.Ticket;
+import Models.Vehicle;
 
 public class FloorService {
 
     private SlotService slotService;
-    FloorService(){
-        slotService = new SlotService();
+    FloorService(SlotService slotService){
+        this.slotService = slotService;
     }
 
     public List<Floor> createFloors(Integer floorsCount, String parkingLotId, Integer startingFloorNumber, Integer slotsPerFloor, FloorSetting floorSetting){
@@ -74,4 +76,13 @@ public class FloorService {
         return occupiedSlots;
     }
     
+    public Ticket allotSlot(Floor floor, Vehicle vehicle){
+        List<Slot> slots = floor.getSlots();
+        for(Slot slot: slots){
+            if(slotService.isSlotAvailableForVehicleType(slot, vehicle.getVehicleType())){
+                return slotService.bookSlot(slot, vehicle);
+            }
+        }
+        return null;
+    }
 }

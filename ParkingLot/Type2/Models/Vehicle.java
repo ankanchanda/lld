@@ -8,7 +8,7 @@ public class Vehicle {
     private String color;
     private VehicleType vehicleType;
 
-    Vehicle(String registrationNumber, String color, VehicleType vehicleType){
+    public Vehicle(String registrationNumber, String color, VehicleType vehicleType){
         this.registrationNumber = registrationNumber;
         this.color = color;
         this.vehicleType = vehicleType;
