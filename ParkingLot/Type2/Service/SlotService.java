@@ -6,9 +6,16 @@ import java.util.List;
 import Enums.SlotStatus;
 import Enums.VehicleType;
 import Models.Slot;
+import Models.Ticket;
 import Models.Vehicle;
 
 public class SlotService {
+
+    TicketService ticketService;
+
+    SlotService(TicketService ticketService){
+        this.ticketService = ticketService;
+    }
 
     public Slot addSlot(Integer id, String parkingLotId, Integer floorNumber, VehicleType vehicleType, SlotStatus slotStatus){
         return new Slot(id, parkingLotId, floorNumber, vehicleType, slotStatus);
@@ -24,8 +31,10 @@ public class SlotService {
         return slots;
     }
 
-    public void bookSlot(Slot slot, Vehicle vehicle){
+    public Ticket bookSlot(Slot slot, Vehicle vehicle){
         slot.setSlotStatus(SlotStatus.OCCUPIED);
+        Ticket ticket = ticketService.generateTicket(slot, vehicle);
+        return ticket;
     }
 
     public void releaseSlot(Slot slot){

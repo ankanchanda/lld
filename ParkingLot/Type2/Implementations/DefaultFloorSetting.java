@@ -12,8 +12,8 @@ import Service.SlotService;
 public class DefaultFloorSetting implements FloorSetting{
 
     SlotService slotService;
-    public DefaultFloorSetting(){
-        slotService = new SlotService();
+    public DefaultFloorSetting(SlotService slotService){
+       this.slotService = slotService;
     }
 
     @Override

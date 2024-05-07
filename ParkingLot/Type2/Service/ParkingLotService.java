@@ -9,16 +9,22 @@ import Implementations.DefaultFloorSetting;
 import Models.Floor;
 import Models.ParkingLot;
 import Models.Slot;
+import Models.Ticket;
+import Models.Vehicle;
 
 public class ParkingLotService {
 
     private FloorService floorService;
+    private TicketService ticketService;
+    private SlotService slotService;
     public ParkingLotService(){
-        floorService = new FloorService();
+        ticketService = new TicketService();
+        slotService = new SlotService(ticketService);
+        floorService = new FloorService(slotService);
     }
 
     public ParkingLot createParkingLot(String parkingLotId, Integer numberOfFloors, Integer slotsPerFloor){
-        List<Floor> floors = floorService.createFloors(numberOfFloors, parkingLotId, 1, slotsPerFloor, new DefaultFloorSetting());
+        List<Floor> floors = floorService.createFloors(numberOfFloors, parkingLotId, 1, slotsPerFloor, new DefaultFloorSetting(this.slotService));
 
         ParkingLot parkingLot =  new ParkingLot(parkingLotId, floors);
         System.out.println("Created parking lot with " + numberOfFloors + " floors and " + slotsPerFloor + " slots per floor");
@@ -31,9 +37,7 @@ public class ParkingLotService {
         Map<Integer, Integer> freeSlotsCount = new TreeMap<>();
         for(Floor floor: floors){
             Integer availableSlots = floorService.getAvailableSlotsCountByVehicleType(floor, vehicleType);
-            if(availableSlots > 0){
-                freeSlotsCount.put(floor.getFloorNumber(), availableSlots);
-            }
+            freeSlotsCount.put(floor.getFloorNumber(), availableSlots);
         }
 
         return freeSlotsCount;
@@ -66,5 +70,27 @@ public class ParkingLotService {
             occupiedSlots.put(floor.getFloorNumber(), slots);
         }
         return occupiedSlots;
+    }
+
+    public Ticket parkVehicle(ParkingLot parkingLot, Vehicle vehicle){
+        List<Floor> floors = parkingLot.getFloors();
+        for(Floor floor: floors){
+            if(floorService.isSlotAvailableForVehcicleType(floor, vehicle.getVehicleType())){
+                return floorService.allotSlot(floor, vehicle);
+            }
+        }
+        return null;
+    }
+
+    public Vehicle unparkVehicle(String ticketId){
+        Ticket ticket = ticketService.getTicketByTicketId(ticketId);
+        if(ticket == null){
+            return null;
+        }
+        Vehicle vehicle = ticket.getVehicle();
+        Slot slot = ticket.getSlot();
+        slotService.releaseSlot(slot);
+        ticketService.expireTicket(ticketId);
+        return vehicle;
     }
 }
