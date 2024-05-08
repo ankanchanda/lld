@@ -74,10 +74,10 @@ class should depend on interfaces rather than concrete classes
 
 
 Refer to <a href="DependencyInversionPrinciple.java">DependencyInversionPrinciple.java</a>
-- <<keyboard>>
+- <\<keyboard>>
     - WiredKeyboard
     - BluetoothKeyboard
-- <<Mouse>>
+- <\<Mouse>>
     - WiredMouse
     - BluetoothMouse
 
