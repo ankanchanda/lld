@@ -12,8 +12,6 @@ import lld.TicTacToe.Models.PieceType;
 import lld.TicTacToe.Models.Player;
 import lld.TicTacToe.Models.PlayingPiece;
 import lld.TicTacToe.Models.PlayingPieceFactory;
-import lld.TicTacToe.Models.PlayingPieceO;
-import lld.TicTacToe.Models.PlayingPieceX;
 
 public class TicTacToeGame {
     
